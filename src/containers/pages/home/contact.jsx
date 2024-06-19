@@ -134,7 +134,7 @@ function SectionContactMe() {
                 </div>
                 <div>
                   <h1 className="text-2xl font-bold">Teléfonos</h1>
-                  <div className="grid grid-cols-2 gap-16 w-full max-w-[50rem]">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-16 w-full max-w-[50rem]">
                     <div className="flex-col">
                       <div className="mt-2 mb-6 flex items-center gap-4 text-1xl font-medium text-gray-800 dark:text-gray-500">
                         {numeros}

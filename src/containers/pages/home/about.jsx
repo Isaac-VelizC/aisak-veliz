@@ -27,7 +27,7 @@ function SectionAboutMe() {
               alt="Perfil"
             />
           </div>
-          <span className="text-center text-2xl font-bold uppercase">
+          <span className="text-center text-xl md:text-2xl font-bold uppercase">
             {data && data.name}
           </span>
           <span className="font-medium text-center text-12">
@@ -36,7 +36,7 @@ function SectionAboutMe() {
         </div>
         <div className=" border-b">
           <blockquote>
-            <h1 className="text-4xl font-bold">Hola! Soy Isaac Veliz</h1>
+            <h1 className=" text-2xl md:text-4xl font-bold">Hola! Soy Isaac Veliz</h1>
             {tags &&
               tags.map((item) => (
                 <span
