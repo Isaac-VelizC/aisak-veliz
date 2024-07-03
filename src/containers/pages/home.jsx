@@ -8,6 +8,7 @@ import SectionServices from "./home/services";
 import Navbar from "components/Navbar/navbar";
 import SectionHeader from "./home/header";
 import Footer from "components/Footer/footer";
+import "./home/styles/loader.css";
 
 function HomePage() {
   const [loading, setLoading] = useState(true);
@@ -57,8 +58,10 @@ function HomePage() {
         <Footer/>
       </main>
       {loading && (
-        <div className="flex justify-center items-center h-screen fixed top-0 left-0 right-0 bottom-0 bg-opacity-60 bg-colorLigthFour dark:bg-colorDarkFour z-50">
-          <p>Cargando</p>
+        <div className="flex justify-center items-center h-screen fixed top-0 left-0 right-0 bottom-0 bg-opacity-60 bg-colorDarkFour z-50">
+          <div class="code-loader">
+            <span>{'<'}</span>/<span>{'>'}</span>
+          </div>
         </div>
       )}
     </Layout>

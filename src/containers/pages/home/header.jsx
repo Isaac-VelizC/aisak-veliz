@@ -1,4 +1,5 @@
 import { Typewriter } from "react-simple-typewriter";
+import { motion } from "framer-motion";
 import ButtonPrimary from "components/Button/buttonPrimary";
 import { Link } from "react-router-dom";
 import Github from "assets/img/github.png";
@@ -91,7 +92,15 @@ function SectionHeader({ contactMeRef }) {
             to={item.link}
             className=" bg-colorLigthPrimary rounded-xl shadow-xl py-1 px-1"
           >
-            <img src={item.img} alt={item.name} width={30} height={30} />
+            <motion.img
+              initial={{ opacity: 0, y: -50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              src={item.img}
+              alt={item.name}
+              width={30}
+              height={30}
+            />
           </Link>
         ))}
       </div>

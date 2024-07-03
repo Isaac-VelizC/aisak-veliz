@@ -20,22 +20,27 @@ function SectionProjects() {
         <div className="mt-20 grid gap-5 max-w-none sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post, index) => (
             <div key={index}>
-              <div className="container">
-                <div className="front" style={{
-                    backgroundImage: `url(${post.imageUrl})`, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden',
-                  }}
-                >
-                  <div className="inner">
-                    <p className="relative text-[1rem] mb-[2rem] text-colorLigthPrimary">{post.title}</p>
-                    <span className="text-colorLigthPrimary font-serif">{post.date}</span>
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1 }}>
+                <div className="container">
+                  <div className="front" style={{
+                      backgroundImage: `url(${post.imageUrl})`, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden',
+                    }}
+                  >
+                    <div className="inner">
+                      <p className="relative text-[1rem] mb-[2rem] text-colorLigthPrimary">{post.title}</p>
+                      <span className="text-colorLigthPrimary font-serif">{post.date}</span>
+                    </div>
+                  </div>
+                  <div className="back">
+                    <div className="inner">
+                      <p>{post.description}</p>
+                    </div>
                   </div>
                 </div>
-                <div className="back">
-                  <div className="inner">
-                    <p>{post.description}</p>
-                  </div>
-                </div>
-              </div>
+              </motion.div>
             </div>
           ))}
         </div>

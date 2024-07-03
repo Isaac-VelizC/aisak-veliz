@@ -1,6 +1,12 @@
+import { motion } from "framer-motion";
+
 export default function Textarea({ text, value, onChange, name, placeholder, rows }) {
   return (
-    <div className="w-[22rem] p-5 font-mono">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+      className="w-[22rem] p-5 font-mono">
       <label className="block text-gray-700 text-sm font-bold mb-2">{text}</label>
       <textarea
         rows={rows}
@@ -11,6 +17,6 @@ export default function Textarea({ text, value, onChange, name, placeholder, row
           focus:outline-colorLigthTree dark:focus:outline-colorDarkTree bg-colorLigthTree dark:bg-colorDarkSecondary"
         placeholder={placeholder}
       ></textarea>
-    </div>
+    </motion.div>
   );
 }

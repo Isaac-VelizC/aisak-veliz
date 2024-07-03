@@ -55,7 +55,7 @@ function SectionContactMe() {
       })
       .catch((err) => console.error("Error copying to clipboard: ", err));
   };
-  const email = "aisakveliz@gmail.com";
+  const email = "aisakvelizdc@gmail.com";
   const numeros = "+591 69625120";
   return (
     <div className="relative flex items-center h-auto md:h-screen">
@@ -117,7 +117,10 @@ function SectionContactMe() {
           <div className="p-8">
             <div className="mx-auto max-w-md px-4 sm:max-w-4xl sm:px-6 lg:max-w-none lg:px-0 lg:py-0">
               <blockquote className="text-colorDarkPrimary dark:text-colorLigthPrimary">
-                <div>
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1 }}>
                   <h1 className="text-2xl font-bold">Correo Electrónico</h1>
                   <div className="mt-2 mb-6 flex items-center text-1xl gap-4 font-medium text-gray-800 dark:text-gray-500">
                     {email}
@@ -131,8 +134,11 @@ function SectionContactMe() {
                       ¡Correo copiado al portapapeles!
                     </p>
                   )}
-                </div>
-                <div>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, x: -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1 }}>
                   <h1 className="text-2xl font-bold">Teléfonos</h1>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-16 w-full max-w-[50rem]">
                     <div className="flex-col">
@@ -150,15 +156,18 @@ function SectionContactMe() {
                       )}
                     </div>
                   </div>
-                </div>
-                <div>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1 }}>
                   <h1 className="text-2xl font-bold">Dirección</h1>
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 w-full max-w-[50rem]">
                     <div className="mt-2 mb-6text-1xl font-medium text-gray-800 dark:text-gray-500">
                       25 de diciembre, Potosí, Bolivia
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </blockquote>
             </div>
           </div>
