@@ -1,10 +1,12 @@
+import Project1 from 'assets/projects/img1.jpeg'
+
 const posts = [
     {
       title: 'Aplicación web de gestión educativa',
       href: '#',
       description: 'No manches, de nuevo es la mejor si lo digo yo so lo aseguro',
-      date: 'Abr 10, 2024',
-      imageUrl: 'https://i.pinimg.com/736x/65/05/21/650521e6e0884d4fcf32c82eb5e4bb6b.jpg',
+      date: 'Jun 3, 2024',
+      imageUrl: Project1,
       readingTime: '6 min',
     },
     {

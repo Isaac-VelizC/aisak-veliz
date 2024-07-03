@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 function SectionAboutMe() {
   const data = {
     id: 1,
-    name: "Ingeniero en sistemas",
+    name: "Ingeniero de sistemas",
     shortDescription: "Desarrollador Full Stack.",
   };
 
