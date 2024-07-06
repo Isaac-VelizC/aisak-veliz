@@ -3,8 +3,7 @@ import { CiCloudSun, CiCloudMoon } from "react-icons/ci";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
 import ParticlesComponent from "style/particle";
-import Logo from "assets/logo/black.png";
-import LogoWhite from "assets/logo/white.png";
+import AIsakVelizLogo from "assets/logo/logo.png";
 import { Link } from "react-router-dom";
 
 function Navbar({
@@ -95,7 +94,7 @@ function Navbar({
             <Link onClick={() => {
               scrollToRef(headerRef)
             }} className=" flex justify-center items-center gap-2">
-              <img src={darkmode ? LogoWhite : Logo} alt="Logo" width={30} />
+              <img src={AIsakVelizLogo} alt="AIsakVeliz" width={30} />
               <p className="md:flex hidden text-2xl font-sans italic text-colorDarkPrimary dark:text-colorLigthPrimary">
                 AIsak<span className="text-colorUnique">Veliz</span>
               </p>
