@@ -2,11 +2,8 @@ import { Typewriter } from "react-simple-typewriter";
 import { motion } from "framer-motion";
 import ButtonPrimary from "components/Button/buttonPrimary";
 import { Link } from "react-router-dom";
-import Github from "assets/img/github.png";
-import Instagram from "assets/img/instagram.png";
-import LinkedIn from "assets/img/linkedin.png";
 
-function SectionHeader({ contactMeRef }) {
+function SectionHeader({ contactMeRef, socials }) {
   const scrollToRef = (ref) => {
     window.scrollTo({
       top: ref.current.offsetTop,
@@ -14,32 +11,7 @@ function SectionHeader({ contactMeRef }) {
     });
   };
 
-  const social = [
-    {
-      id: 1,
-      name: "Github",
-      img: Github,
-      link: "https://github.com/Isaac-VelizC",
-    },
-    {
-      id: 2,
-      name: "Linkedin",
-      img: LinkedIn,
-      link: "https://www.linkedin.com/in/isak-v-7bb52a218/",
-    },
-    {
-      id: 3,
-      name: "Instagram",
-      img: Instagram,
-      link: "https://www.instagram.com/isaac_veliz_8/",
-    },
-  ];
-
   const data = {
-    name: "Isaac Veliz",
-    profesion: "Ingeniero en Sistemas",
-    message:
-      "Ingeniero en Sistemas especializado en diseño y desarrollo web, incluyendo aplicaciones para dispositivos móviles. Mi meta es garantizar que tus proyectos sobresalgan y funcionen sin problemas en línea.",
     submessage: "¡Estoy aquí para dar vida a tus ideas en el mundo digital!",
   };
 
@@ -86,10 +58,10 @@ function SectionHeader({ contactMeRef }) {
         </div>
       </div>
       <div className="flex justify-start px-8 pb-6 lg:pb-12 gap-8">
-        {social.map((item) => (
+        {socials.map((item) => (
           <Link
             key={item.id}
-            to={item.link}
+            to={item.path}
             className=" bg-colorLigthPrimary rounded-xl shadow-xl py-1 px-1"
           >
             <motion.img

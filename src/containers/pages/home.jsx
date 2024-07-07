@@ -1,17 +1,25 @@
-import { useEffect, useRef, useState } from "react";
-import Layout from "layouts/layout";
-import SectionAboutMe from "./home/about";
-import SectionContactMe from "./home/contact";
-import SectionProjects from "./home/projects";
-import SectionSkills from "./home/skills";
-import SectionServices from "./home/services";
-import Navbar from "components/Navbar/navbar";
-import SectionHeader from "./home/header";
-import Footer from "components/Footer/footer";
-import "./home/styles/loader.css";
+import { useEffect, useRef, useState } from 'react';
+import Layout from 'layouts/layout';
+import SectionAboutMe from './home/about';
+import SectionContactMe from './home/contact';
+import SectionProjects from './home/projects';
+import SectionSkills from './home/skills';
+import SectionServices from './home/services';
+import Navbar from 'components/Navbar/navbar';
+import SectionHeader from './home/header';
+import Footer from 'components/Footer/footer';
+import './home/styles/loader.css';
+import { fetchSkills, fetchSocials, fetchAboutMe, fetchContactInfo, fetchConfig, fetchProjects } from 'services/useFetch';
 
 function HomePage() {
   const [loading, setLoading] = useState(true);
+  const [skills, setSkills] = useState([]);
+  const [socials, setSocials] = useState([]);
+  const [aboutMe, setAboutMe] = useState(null);
+  const [contactInfo, setContactInfo] = useState(null);
+  const [config, setConfig] = useState(null);
+  const [projects, setProjects] = useState([]);
+
   const headerRef = useRef(null);
   const aboutMeRef = useRef(null);
   const servicesRef = useRef(null);
@@ -21,8 +29,29 @@ function HomePage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      setTimeout(() => setLoading(false), 3000);
+      try {
+        const [skillsData, socialsData, aboutMeData, contactInfoData, configData, projectsData] = await Promise.all([
+          fetchSkills(),
+          fetchSocials(),
+          fetchAboutMe(),
+          fetchContactInfo(),
+          fetchConfig(),
+          fetchProjects()
+        ]);
+
+        setSkills(skillsData);
+        setSocials(socialsData);
+        setAboutMe(aboutMeData);
+        setContactInfo(contactInfoData);
+        setConfig(configData);
+        setProjects(projectsData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      }
     };
+
     fetchData();
   }, []);
 
@@ -38,28 +67,28 @@ function HomePage() {
       />
       <main className="relative px-8 lg:px-28 overflow-hidden">
         <div ref={headerRef}>
-          <SectionHeader contactMeRef={contactMeRef}/>
+          <SectionHeader contactMeRef={contactMeRef} socials={socials}/>
         </div>
         <div ref={aboutMeRef}>
-          <SectionAboutMe />
+          <SectionAboutMe aboutMe={aboutMe} />
         </div>
         <div ref={servicesRef}>
-          <SectionServices />
+          <SectionServices/>
         </div>
         <div ref={skillsRef}>
-          <SectionSkills />
+          <SectionSkills skills={skills} />
         </div>
         <div ref={projectsRef}>
-          <SectionProjects />
+          <SectionProjects projects={projects} />
         </div>
         <div ref={contactMeRef}>
-          <SectionContactMe />
+          <SectionContactMe contactInfo={contactInfo} />
         </div>
         <Footer/>
       </main>
       {loading && (
         <div className="flex justify-center items-center h-screen fixed top-0 left-0 right-0 bottom-0 bg-opacity-60 bg-colorDarkFour z-50">
-          <div class="code-loader">
+          <div className="code-loader">
             <span>{'<'}</span>/<span>{'>'}</span>
           </div>
         </div>

@@ -1,8 +1,7 @@
-import posts from "services/projects";
 import "./styles/cardProjects.css";
 import { motion } from "framer-motion";
 
-function SectionProjects() {
+function SectionProjects({ projects }) {
   return (
     <div className="relative  h-auto md:h-screen flex justify-center items-center">
       <div className="w-full mt-[5rem] lg:mt-0">
@@ -18,7 +17,7 @@ function SectionProjects() {
           </p>
         </motion.div>
         <div className="mt-20 grid gap-5 max-w-none sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post, index) => (
+          {projects.map((post, index) => (
             <div key={index}>
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
@@ -26,17 +25,17 @@ function SectionProjects() {
                 transition={{ duration: 1 }}>
                 <div className="container">
                   <div className="front" style={{
-                      backgroundImage: `url(${post.imageUrl})`, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden',
+                      backgroundImage: `url(${post.imgs})`, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden',
                     }}
                   >
                     <div className="inner">
-                      <p className="relative text-[1rem] mb-[2rem] text-colorLigthPrimary">{post.title}</p>
+                      <p className="relative text-[1rem] mb-[2rem] text-colorLigthPrimary">{post.titulo}</p>
                       <span className="text-colorLigthPrimary font-serif">{post.date}</span>
                     </div>
                   </div>
                   <div className="back">
                     <div className="inner">
-                      <p>{post.description}</p>
+                      <p>{post.short}</p>
                     </div>
                   </div>
                 </div>

@@ -5,12 +5,13 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import ButtonPrimary from "components/Button/buttonPrimary";
 
-function SectionContactMe() {
+function SectionContactMe({ contactInfo }) {
   let emptymensaje = {
     name: "",
     email: "",
     message: "",
   };
+  console.log(contactInfo);
   const [copied, setCopied] = useState(false);
   const [copiedText, setCopiedText] = useState("");
   const [isValidEmailState, setIsValidEmailState] = useState(true);
@@ -55,8 +56,8 @@ function SectionContactMe() {
       })
       .catch((err) => console.error("Error copying to clipboard: ", err));
   };
-  const email = "aisakvelizdc@gmail.com";
-  const numeros = "+591 69625120";
+  const email = contactInfo && contactInfo.email;
+  const numeros = "+591 "+contactInfo && contactInfo.number;
   return (
     <div className="relative flex items-center h-auto md:h-screen">
       <div className="mt-[5rem] lg:mt-0 mx-auto max-w-7xl text-colorDarkPrimary dark:text-colorLigthPrimary">
@@ -164,7 +165,7 @@ function SectionContactMe() {
                   <h1 className="text-2xl font-bold">Dirección</h1>
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 w-full max-w-[50rem]">
                     <div className="mt-2 mb-6text-1xl font-medium text-gray-800 dark:text-gray-500">
-                      25 de diciembre, Potosí, Bolivia
+                      { contactInfo&&contactInfo.address }, Potosí, Bolivia
                     </div>
                   </div>
                 </motion.div>
