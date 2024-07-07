@@ -4,6 +4,7 @@ import { FaRegCopy } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import ButtonPrimary from "components/Button/buttonPrimary";
+import { registerContact } from 'services/useFetch';
 
 function SectionContactMe({ contactInfo }) {
   let emptymensaje = {
@@ -11,7 +12,6 @@ function SectionContactMe({ contactInfo }) {
     email: "",
     message: "",
   };
-  console.log(contactInfo);
   const [copied, setCopied] = useState(false);
   const [copiedText, setCopiedText] = useState("");
   const [isValidEmailState, setIsValidEmailState] = useState(true);
@@ -37,12 +37,17 @@ function SectionContactMe({ contactInfo }) {
     }
   };
 
-  const onSubmitGuardar = (e, slug) => {
+  const onSubmitGuardar = async (e, contactData) => {
     e.preventDefault();
-    console.log("Mensaje enviado");
-    //enviarMensaje(slug, success, error);
+    try {
+      const response = await registerContact(contactData);
+      console.log('Mensaje enviado', response);
+      setContacto(emptymensaje)
+    } catch (error) {
+      console.error('Error enviando el mensaje', error);
+      // Manejo del error, por ejemplo, mostrando un mensaje de error
+    }
   };
-
   const copyToClipboard = (text) => {
     navigator.clipboard
       .writeText(text)
@@ -57,7 +62,7 @@ function SectionContactMe({ contactInfo }) {
       .catch((err) => console.error("Error copying to clipboard: ", err));
   };
   const email = contactInfo && contactInfo.email;
-  const numeros = "+591 "+contactInfo && contactInfo.number;
+  const numeros = contactInfo ? "+591 "+contactInfo.number : '';
   return (
     <div className="relative flex items-center h-auto md:h-screen">
       <div className="mt-[5rem] lg:mt-0 mx-auto max-w-7xl text-colorDarkPrimary dark:text-colorLigthPrimary">

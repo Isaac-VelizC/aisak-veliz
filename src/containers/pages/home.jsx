@@ -9,7 +9,7 @@ import Navbar from 'components/Navbar/navbar';
 import SectionHeader from './home/header';
 import Footer from 'components/Footer/footer';
 import './home/styles/loader.css';
-import { fetchSkills, fetchSocials, fetchAboutMe, fetchContactInfo, fetchConfig, fetchProjects } from 'services/useFetch';
+import { fetchSkills, fetchSocials, fetchAboutMe, fetchContactInfo, fetchProjects } from 'services/useFetch';
 
 function HomePage() {
   const [loading, setLoading] = useState(true);
@@ -26,16 +26,15 @@ function HomePage() {
   const skillsRef = useRef(null);
   const projectsRef = useRef(null);
   const contactMeRef = useRef(null);
-
+  const url ='http://igla.host/';
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [skillsData, socialsData, aboutMeData, contactInfoData, configData, projectsData] = await Promise.all([
+        const [skillsData, socialsData, aboutMeData, contactInfoData, projectsData] = await Promise.all([
           fetchSkills(),
           fetchSocials(),
           fetchAboutMe(),
           fetchContactInfo(),
-          fetchConfig(),
           fetchProjects()
         ]);
 
@@ -43,7 +42,6 @@ function HomePage() {
         setSocials(socialsData);
         setAboutMe(aboutMeData);
         setContactInfo(contactInfoData);
-        setConfig(configData);
         setProjects(projectsData);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -70,7 +68,7 @@ function HomePage() {
           <SectionHeader contactMeRef={contactMeRef} socials={socials}/>
         </div>
         <div ref={aboutMeRef}>
-          <SectionAboutMe aboutMe={aboutMe} />
+          <SectionAboutMe aboutMe={aboutMe} url={url} />
         </div>
         <div ref={servicesRef}>
           <SectionServices/>
@@ -79,7 +77,7 @@ function HomePage() {
           <SectionSkills skills={skills} />
         </div>
         <div ref={projectsRef}>
-          <SectionProjects projects={projects} />
+          <SectionProjects projects={projects} url={url} />
         </div>
         <div ref={contactMeRef}>
           <SectionContactMe contactInfo={contactInfo} />

@@ -1,7 +1,7 @@
 import "./styles/cardProjects.css";
 import { motion } from "framer-motion";
 
-function SectionProjects({ projects }) {
+function SectionProjects({ projects, url }) {
   return (
     <div className="relative  h-auto md:h-screen flex justify-center items-center">
       <div className="w-full mt-[5rem] lg:mt-0">
@@ -25,7 +25,7 @@ function SectionProjects({ projects }) {
                 transition={{ duration: 1 }}>
                 <div className="container">
                   <div className="front" style={{
-                      backgroundImage: `url(${post.imgs})`, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden',
+                      backgroundImage: `url(${url}${post.imgs})`, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden',
                     }}
                   >
                     <div className="inner">

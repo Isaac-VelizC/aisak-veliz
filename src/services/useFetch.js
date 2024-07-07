@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8000/api';
+const API_BASE_URL = 'http://igla.host';
 
 export const fetchSkills = async () => {
   const response = await axios.get(`${API_BASE_URL}/list-skill`);
@@ -22,12 +22,12 @@ export const fetchContactInfo = async () => {
   return response.data.success;
 };
 
-export const fetchConfig = async () => {
-  const response = await axios.get(`${API_BASE_URL}/info-config`);
-  return response.data.success;
-};
-
 export const fetchProjects = async () => {
   const response = await axios.get(`${API_BASE_URL}/list-projects`);
   return response.data.success;
+};
+
+export const registerContact = async (contactData) => {
+  const response = await axios.post(`${API_BASE_URL}/store-message`, contactData);
+  return response.data;
 };

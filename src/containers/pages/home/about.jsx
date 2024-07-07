@@ -1,15 +1,9 @@
 import { motion } from "framer-motion";
 
-function SectionAboutMe({ aboutMe }) {
+function SectionAboutMe({ aboutMe, url }) {
   const tags = [
-    {
-      id: 1,
-      name: "Programador",
-    },
-    {
-      id: 2,
-      name: "Diseñador",
-    },
+    { id: 1, name: "Programador"},
+    { id: 2, name: "Diseñador" },
   ];
 
   return (
@@ -21,7 +15,7 @@ function SectionAboutMe({ aboutMe }) {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 1 }}
-              src={aboutMe && aboutMe.photo}
+              src={aboutMe && url+aboutMe.photo}
               className="mx-auto my-4 h-68 w-64 rounded-xl drop-shadow-shadowPrimary"
               alt="Perfil"
             />
