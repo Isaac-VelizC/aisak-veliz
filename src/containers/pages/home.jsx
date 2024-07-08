@@ -26,7 +26,7 @@ function HomePage() {
   const skillsRef = useRef(null);
   const projectsRef = useRef(null);
   const contactMeRef = useRef(null);
-  const url ='http://igla.host/';
+  const url ='http://igla.host/api/';
   useEffect(() => {
     const fetchData = async () => {
       try {

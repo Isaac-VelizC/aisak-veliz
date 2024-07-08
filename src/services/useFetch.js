@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://igla.host';
+const API_BASE_URL = 'http://igla.host/api';
 
 export const fetchSkills = async () => {
   const response = await axios.get(`${API_BASE_URL}/list-skill`);
