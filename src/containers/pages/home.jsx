@@ -25,7 +25,7 @@ function HomePage() {
   const skillsRef = useRef(null);
   const projectsRef = useRef(null);
   const contactMeRef = useRef(null);
-  const url ='https://aisakveliz-admin.igla.cloud/';
+  const url ='https://aisakveliz-admin.igla.cloud/api/';
   useEffect(() => {
     const fetchData = async () => {
       try {
