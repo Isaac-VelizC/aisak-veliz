@@ -63,7 +63,7 @@ function SectionAboutMe({ aboutMe, url }) {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
               className="mt-6 text-1xl">
-              {aboutMe && aboutMe.description}
+                <div dangerouslySetInnerHTML={{ __html: aboutMe && aboutMe.description }} />
             </motion.p>
           </blockquote>
         </div>
