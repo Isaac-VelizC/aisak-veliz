@@ -17,7 +17,6 @@ function HomePage() {
   const [socials, setSocials] = useState([]);
   const [aboutMe, setAboutMe] = useState(null);
   const [contactInfo, setContactInfo] = useState(null);
-  const [config, setConfig] = useState(null);
   const [projects, setProjects] = useState([]);
 
   const headerRef = useRef(null);
@@ -37,7 +36,6 @@ function HomePage() {
           fetchContactInfo(),
           fetchProjects()
         ]);
-
         setSkills(skillsData);
         setSocials(socialsData);
         setAboutMe(aboutMeData);

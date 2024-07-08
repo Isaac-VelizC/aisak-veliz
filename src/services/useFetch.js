@@ -3,28 +3,77 @@ import axios from 'axios';
 const API_BASE_URL = 'http://igla.host/api';
 
 export const fetchSkills = async () => {
-  const response = await axios.get(`${API_BASE_URL}/list-skill`);
-  return response.data.success;
+  try {
+    const response = await axios.get(`${API_BASE_URL}/list-skill`);
+
+    if (!response.data.success || response.data.success.length === 0) {
+      console.error('No data found');
+      return response.data.success;
+    }
+
+    return response.data.success;
+  } catch (error) {
+    console.error('Error fetching skills:', error);
+    return [];
+  }
 };
 
 export const fetchSocials = async () => {
-  const response = await axios.get(`${API_BASE_URL}/list-social`);
-  return response.data.success;
+  try {
+    const response = await axios.get(`${API_BASE_URL}/list-social`);
+    if (!response.data.success || response.data.success.length === 0) {
+      console.error('No data found');
+      return response.data.success;
+    }
+    return response.data.success;
+  } catch (error) {
+    console.error('Error fetching skills:', error);
+    return [];
+  }
 };
 
 export const fetchAboutMe = async () => {
-  const response = await axios.get(`${API_BASE_URL}/info-about-me`);
-  return response.data.success;
+  try {
+    const response = await axios.get(`${API_BASE_URL}/info-about-me`);
+    if (!response.data.success || response.data.success.length === 0) {
+      console.error('No data found');
+      return response.data.success;
+    }
+    return response.data.success;
+  } catch (error) {
+    console.error('Error fetching skills:', error);
+    return [];
+  }
 };
 
 export const fetchContactInfo = async () => {
-  const response = await axios.get(`${API_BASE_URL}/info-contact`);
-  return response.data.success;
+  try {
+    const response = await axios.get(`${API_BASE_URL}/info-contact`);
+    if (!response.data.success || response.data.success.length === 0) {
+      console.error('No data found');
+      return response.data.success;
+    }
+    return response.data.success;
+  } catch (error) {
+    console.error('Error fetching skills:', error);
+    return [];
+  }
 };
 
 export const fetchProjects = async () => {
-  const response = await axios.get(`${API_BASE_URL}/list-projects`);
-  return response.data.success;
+  try {
+    const response = await axios.get(`${API_BASE_URL}/list-projects`);
+
+    if (!response.data.success || response.data.success.length === 0) {
+      console.error('No data found');
+      return response.data.success;
+    }
+
+    return response.data.success;
+  } catch (error) {
+    console.error('Error fetching skills:', error);
+    return [];
+  }
 };
 
 export const registerContact = async (contactData) => {
