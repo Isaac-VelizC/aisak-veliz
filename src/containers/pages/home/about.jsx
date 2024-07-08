@@ -1,13 +1,18 @@
 import { motion } from "framer-motion";
 
 function SectionAboutMe({ aboutMe, url }) {
+  const screenWidth = window.innerWidth;
   const tags = [
     { id: 1, name: "Programador"},
     { id: 2, name: "Diseñador" },
   ];
 
   return (
-    <div className="relative p-4 ls:p-10 h-screen flex items-center">
+    <div
+      className={`relative p-4 ls:p-10 flex items-center ${
+        screenWidth < 640 ? 'h-auto' : 'h-screen'
+      }`}
+    >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 py-2 lg:px-6 text-colorDarkPrimary dark:text-colorLigthPrimary">
         <div className="relative flex flex-col gap-4">
           <div className="text-center">
