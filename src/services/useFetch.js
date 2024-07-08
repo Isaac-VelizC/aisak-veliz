@@ -51,8 +51,9 @@ export const fetchContactInfo = async () => {
     const response = await axios.get(`${API_BASE_URL}/info-contact`);
     if (!response.data.success || response.data.success.length === 0) {
       console.error('No data found');
-      return response.data.success;
+      return response.data.error;
     }
+    console.log(response.data.success);
     return response.data.success;
   } catch (error) {
     console.error('Error fetching skills:', error);
