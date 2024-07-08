@@ -61,7 +61,7 @@ function SectionContactMe({ contactInfo }) {
       })
       .catch((err) => console.error("Error copying to clipboard: ", err));
   };
-  console.log(contactInfo && contactInfo.email);
+  //console.log(contactInfo && contactInfo.email);
   const email = contactInfo && contactInfo.email;
   const numeros = contactInfo ? "+591 "+contactInfo.number : '';
   return (
