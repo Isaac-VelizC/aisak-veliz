@@ -91,6 +91,7 @@ function SectionContactMe({ contactInfo }) {
                 onChange={onInputChange}
                 text="Nombre"
                 placeholder="Isak Veliz"
+                required={true}
               />
               <div>
                 <Input
@@ -100,6 +101,7 @@ function SectionContactMe({ contactInfo }) {
                   onChange={onInputChange}
                   text="Correo Electronico"
                   placeholder="example@gmail.com"
+                required={true}
                 />
                 {!isValidEmailState && (
                   <p className="text-sm text-red-600">
@@ -114,10 +116,10 @@ function SectionContactMe({ contactInfo }) {
                 value={contacto.message}
                 onChange={onInputChange}
                 text="Mensaje"
-                placeholder="Escriba su mensaje"
+                required={true}
               />
               <div className="py-4 flex justify-end">
-                <ButtonPrimary type="submit" title="Enviar Mensaje"/>
+                <ButtonPrimary type="submit" title="Enviar"/>
               </div>
             </form>
           </div>
@@ -146,7 +148,7 @@ function SectionContactMe({ contactInfo }) {
                   initial={{ opacity: 0, x: -50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1 }}>
-                  <h1 className="text-2xl font-bold">Teléfonos</h1>
+                  <h1 className="text-2xl font-bold">Teléfono</h1>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-16 w-full max-w-[50rem]">
                     <div className="flex-col">
                       <div className="mt-2 mb-6 flex items-center gap-4 text-1xl font-medium text-gray-800 dark:text-gray-500">

@@ -1,4 +1,5 @@
 import AIsakVelizLogo from "assets/logo/logo.png";
+import { Link } from "react-router-dom";
 function Footer() {
   return (
     <footer className="relative">
@@ -7,14 +8,11 @@ function Footer() {
           <div className="py-2">
             <img src={AIsakVelizLogo} alt="Logo" width={100}/>
           </div>
-          <p className="pt-10 text-base font-light text-[0.8rem] md:text-[1rem]">
-            Mejorando el mundo a través de la creación de soluciones elegantes y
-            eficientes en el mundo digital.
+          <p className="py-10 font-semibold text-[0.4rem] md:text-[0.6rem] uppercase tracking-widest">
+            ISAAC VELIZ - PORTAFOLIO - INGENIERO DE SISTEMAS
           </p>
-          <p className="pt-6 text-[0.8rem] font-semibold md:text-[1rem]">
-            &copy; 💻 - Construido por @AIsakVeliz con 💜 en 2024
-            <br />
-            Inc. Todos los derechos reservados
+          <p className="pt-12 text-[0.4rem] font-light md:text-[0.6rem] uppercase tracking-widest">
+            &copy; 2024 . PORTAFOLIO | ISAAC VELIZ - CREADOR DE <Link className=" hover:text-colorDarkPrimary dark:hover:text-colorLigthPrimary" to="https://aisakveliz.netlify.app/">AISAKVELIZ</Link>
           </p>
         </div>
       </div>
