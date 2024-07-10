@@ -3,7 +3,8 @@ import { CiCloudSun, CiCloudMoon } from "react-icons/ci";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
 import ParticlesComponent from "style/particle";
-import AIsakVelizLogo from "assets/logo/logo.png";
+import AIsakVelizLight from "assets/logo/aisakveliz-light.png";
+import AIsakVelizDark from "assets/logo/aisakveliz-dark.png";
 import { Link } from "react-router-dom";
 
 function Navbar({
@@ -13,8 +14,10 @@ function Navbar({
   skillsRef,
   projectsRef,
   contactMeRef,
+  darkmode,
+  setDarkmode
 }) {
-  const [darkmode, setDarkmode] = useState(false);
+  //const [darkmode, setDarkmode] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("home");
   window.onscroll = function () {
@@ -94,10 +97,7 @@ function Navbar({
             <Link onClick={() => {
               scrollToRef(headerRef)
             }} className=" flex justify-center items-center gap-2">
-              <img src={AIsakVelizLogo} alt="AIsakVeliz" width={30} />
-              <p className="md:flex hidden text-2xl font-sans italic text-colorDarkPrimary dark:text-colorLigthPrimary">
-                AIsak<span className="text-colorUnique">Veliz</span>
-              </p>
+              <img src={darkmode ? AIsakVelizLight : AIsakVelizDark } alt="AIsakVeliz" width={200} />
             </Link>
             <div className="text-3xl md:hidden flex justify-center items-center dark:text-colorLigthPrimary gap-4">
               {themeMode()}

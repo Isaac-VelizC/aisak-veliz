@@ -18,6 +18,7 @@ function HomePage() {
   const [aboutMe, setAboutMe] = useState(null);
   const [contactInfo, setContactInfo] = useState(null);
   const [projects, setProjects] = useState([]);
+  const [darkmode, setDarkmode] = useState(false);
 
   const headerRef = useRef(null);
   const aboutMeRef = useRef(null);
@@ -26,6 +27,7 @@ function HomePage() {
   const projectsRef = useRef(null);
   const contactMeRef = useRef(null);
   const url ='https://aisakveliz-admin.igla.cloud/';
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -59,7 +61,8 @@ function HomePage() {
         servicesRef={servicesRef} 
         skillsRef={skillsRef} 
         projectsRef={projectsRef} 
-        contactMeRef={contactMeRef} 
+        contactMeRef={contactMeRef}
+        darkmode={darkmode} setDarkmode={setDarkmode}  
       />
       <main className="relative px-8 lg:px-28 overflow-hidden">
         <div ref={headerRef}>
@@ -80,7 +83,7 @@ function HomePage() {
         <div ref={contactMeRef}>
           <SectionContactMe contactInfo={contactInfo} />
         </div>
-        <Footer/>
+        <Footer darkmode={darkmode} setDarkmode={setDarkmode} />
       </main>
       {loading && (
         <div className="flex justify-center items-center h-screen fixed top-0 left-0 right-0 bottom-0 bg-opacity-60 bg-colorDarkFour z-50">
