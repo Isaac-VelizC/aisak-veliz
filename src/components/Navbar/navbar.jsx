@@ -5,6 +5,8 @@ import { IoMdClose } from "react-icons/io";
 import ParticlesComponent from "style/particle";
 import AIsakVelizLight from "assets/logo/aisakveliz-light.png";
 import AIsakVelizDark from "assets/logo/aisakveliz-dark.png";
+import LogoDark from "assets/logo/logo-light.png";
+import LogoLight from "assets/logo/logo-dark.png";
 import { Link } from "react-router-dom";
 
 function Navbar({
@@ -17,7 +19,6 @@ function Navbar({
   darkmode,
   setDarkmode
 }) {
-  //const [darkmode, setDarkmode] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("home");
   window.onscroll = function () {
@@ -97,7 +98,12 @@ function Navbar({
             <Link onClick={() => {
               scrollToRef(headerRef)
             }} className=" flex justify-center items-center gap-2">
-              <img src={darkmode ? AIsakVelizLight : AIsakVelizDark } alt="AIsakVeliz" width={200} />
+              <p className="md:flex hidden">
+                <img src={darkmode ? AIsakVelizLight : AIsakVelizDark } alt="AIsakVeliz" width={200} />
+              </p>
+              <p className="flex md:hidden">
+                <img src={darkmode ? LogoLight : LogoDark } alt="Logo" width={40} />
+              </p>
             </Link>
             <div className="text-3xl md:hidden flex justify-center items-center dark:text-colorLigthPrimary gap-4">
               {themeMode()}

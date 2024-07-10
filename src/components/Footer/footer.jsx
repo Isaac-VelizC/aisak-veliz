@@ -14,10 +14,10 @@ function Footer({ darkmode }) {
             <img src={darkmode ? LogoLight : LogoDark } alt="Logo" width={100} className="mb-4" />
             <img src={darkmode ? AIsakVelizLight : AIsakVelizDark } alt="Logo" width={250} />
           </div>
-          <p className="mb-6 font-bold text-[0.4rem] md:text-[0.6rem] uppercase tracking-widest">
+          <p className="mb-6 font-bold text-[0.6rem] uppercase tracking-widest">
             ISAAC VELIZ - PORTAFOLIO - INGENIERO DE SISTEMAS
           </p>
-          <p className="pt-12 text-[0.4rem] font-light md:text-[0.6rem] uppercase tracking-widest">
+          <p className="pt-12 font-light text-[0.6rem] uppercase tracking-widest">
             &copy; 2024 . PORTAFOLIO | ISAAC VELIZ - CREADOR DE{" "}
             <Link
               className="hover:text-colorDarkPrimary dark:hover:text-colorLigthPrimary"
