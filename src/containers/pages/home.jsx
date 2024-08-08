@@ -66,7 +66,7 @@ function HomePage() {
       />
       <main className="relative px-8 lg:px-28 overflow-hidden">
         <div ref={headerRef}>
-          <SectionHeader contactMeRef={contactMeRef} socials={socials}/>
+          <SectionHeader contactMeRef={contactMeRef} socials={socials} fileCV={aboutMe}/>
         </div>
         <div ref={aboutMeRef}>
           <SectionAboutMe aboutMe={aboutMe} url={url} />

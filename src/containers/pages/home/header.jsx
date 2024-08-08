@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import ButtonPrimary from "components/Button/buttonPrimary";
 import { Link } from "react-router-dom";
 
-function SectionHeader({ contactMeRef, socials }) {
+function SectionHeader({ contactMeRef, socials, fileCV }) {
   const scrollToRef = (ref) => {
     window.scrollTo({
       top: ref.current.offsetTop,
@@ -17,7 +17,9 @@ function SectionHeader({ contactMeRef, socials }) {
 
   const downloadDocument = () => {
     const link = document.createElement("a");
-    link.href = "ruta/de/tu/documento.pdf";
+    console.log(fileCV.cv);
+    
+    link.href = fileCV;
     link.download = "IsaacVeliz_hoja-de-vida.pdf";
     document.body.appendChild(link);
     link.click();
