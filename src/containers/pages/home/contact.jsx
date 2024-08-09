@@ -13,6 +13,9 @@ function SectionContactMe({ darkmode }) {
     email: "",
     message: "",
   };
+  const serviceKey = process.env.REACT_APP_SERVICE_KEY;
+  const templateKey = process.env.REACT_APP_TEMPLATE_KEY;
+  const publicKey = process.env.REACT_APP_PUBLIC_KEY;
   const [copied, setCopied] = useState(false);
   const [copiedText, setCopiedText] = useState("");
   const [isValidEmailState, setIsValidEmailState] = useState(true);
@@ -41,10 +44,9 @@ function SectionContactMe({ darkmode }) {
 
   const sendEmail = () => {
     emailjs
-      .send("service_y1rln89", "template_2aet5qf", contacto, {
-        publicKey: "vVnc-MReIPLqbNFpz",
-      })
-      .then(
+      .send(serviceKey, templateKey, contacto, {
+        publicKey: publicKey,
+      }).then(
         () => {
           toast.success("¡Mensaje enviado con éxito!", {
             position: "top-right",
@@ -135,7 +137,6 @@ function SectionContactMe({ darkmode }) {
                   </p>
                 )}
               </div>
-              <input type="email" name="email" />
               <Textarea
                 name="message"
                 rows={3}
