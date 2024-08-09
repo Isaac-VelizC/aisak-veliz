@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import "./styles/cardSkills.css";
 import { Link } from "react-router-dom";
-//import tools from "services/skills";
+import skills from "services/skills";
 
-function SectionSkills({ skills }) {
+function SectionSkills() {
   return (
     <div className="relative h-auto lg:h-screen flex items-center">
       <div className="w-full mt-[5rem] lg:mt-0 text-colorDarkPrimary dark:text-colorLigthPrimary">

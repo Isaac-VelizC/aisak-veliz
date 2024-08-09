@@ -9,14 +9,11 @@ import Navbar from 'components/Navbar/navbar';
 import SectionHeader from './home/header';
 import Footer from 'components/Footer/footer';
 import './home/styles/loader.css';
-import { fetchSkills, fetchSocials, fetchAboutMe, fetchContactInfo, fetchProjects } from 'services/useFetch';
+import { fetchAboutMe, fetchProjects } from 'services/useFetch';
 
 function HomePage() {
   const [loading, setLoading] = useState(true);
-  const [skills, setSkills] = useState([]);
-  const [socials, setSocials] = useState([]);
   const [aboutMe, setAboutMe] = useState(null);
-  const [contactInfo, setContactInfo] = useState(null);
   const [projects, setProjects] = useState([]);
   const [darkmode, setDarkmode] = useState(false);
 
@@ -31,17 +28,11 @@ function HomePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [skillsData, socialsData, aboutMeData, contactInfoData, projectsData] = await Promise.all([
-          fetchSkills(),
-          fetchSocials(),
+        const [ aboutMeData, projectsData ] = await Promise.all([
           fetchAboutMe(),
-          fetchContactInfo(),
           fetchProjects()
         ]);
-        setSkills(skillsData);
-        setSocials(socialsData);
         setAboutMe(aboutMeData);
-        setContactInfo(contactInfoData);
         setProjects(projectsData);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -66,7 +57,7 @@ function HomePage() {
       />
       <main className="relative px-8 lg:px-28 overflow-hidden">
         <div ref={headerRef}>
-          <SectionHeader contactMeRef={contactMeRef} socials={socials} fileCV={aboutMe}/>
+          <SectionHeader contactMeRef={contactMeRef}/>
         </div>
         <div ref={aboutMeRef}>
           <SectionAboutMe aboutMe={aboutMe} url={url} />
@@ -75,15 +66,15 @@ function HomePage() {
           <SectionServices/>
         </div>
         <div ref={skillsRef}>
-          <SectionSkills skills={skills} />
+          <SectionSkills/>
         </div>
         <div ref={projectsRef}>
           <SectionProjects projects={projects} url={url} />
         </div>
         <div ref={contactMeRef}>
-          <SectionContactMe contactInfo={contactInfo} />
+          <SectionContactMe darkmode={darkmode} setDarkmode={setDarkmode} />
         </div>
-        <Footer darkmode={darkmode} setDarkmode={setDarkmode} />
+        <Footer />
       </main>
       {loading && (
         <div className="flex justify-center items-center h-screen fixed top-0 left-0 right-0 bottom-0 bg-opacity-60 bg-colorDarkFour z-50">

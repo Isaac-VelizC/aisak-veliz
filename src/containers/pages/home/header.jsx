@@ -2,8 +2,9 @@ import { Typewriter } from "react-simple-typewriter";
 import { motion } from "framer-motion";
 import ButtonPrimary from "components/Button/buttonPrimary";
 import { Link } from "react-router-dom";
+import socials from "services/socials";
 
-function SectionHeader({ contactMeRef, socials, fileCV }) {
+function SectionHeader({ contactMeRef }) {
   const scrollToRef = (ref) => {
     window.scrollTo({
       top: ref.current.offsetTop,
@@ -17,9 +18,8 @@ function SectionHeader({ contactMeRef, socials, fileCV }) {
 
   const downloadDocument = () => {
     const link = document.createElement("a");
-    console.log(fileCV.cv);
     
-    link.href = fileCV;
+    link.href = '';
     link.download = "IsaacVeliz_hoja-de-vida.pdf";
     document.body.appendChild(link);
     link.click();
@@ -34,7 +34,7 @@ function SectionHeader({ contactMeRef, socials, fileCV }) {
           </div>
           <div className="flex justify-center font-bold text-[20px] md:text-[40px] text-colorDarkPrimary dark:text-colorLigthPrimary">
             <Typewriter
-              words={["Laravel and ReactJS, developer"]}
+              words={["Isaac Veliz FullStack developer"]}
               loop={1}
               cursor
               cursorStyle="_"
@@ -63,7 +63,7 @@ function SectionHeader({ contactMeRef, socials, fileCV }) {
         {socials.map((item) => (
           <Link
             key={item.id}
-            to={item.path}
+            to={item.link}
             className=" bg-colorLigthPrimary rounded-xl shadow-xl py-1 px-1"
           >
             <motion.img

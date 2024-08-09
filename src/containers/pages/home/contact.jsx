@@ -2,11 +2,12 @@ import Input from "components/Forms/input";
 import Textarea from "components/Forms/textarea";
 import { FaRegCopy } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import ButtonPrimary from "components/Button/buttonPrimary";
-import { registerContact } from 'services/useFetch';
+import emailjs from "@emailjs/browser";
+import { toast, ToastContainer } from "react-toastify";
 
-function SectionContactMe({ contactInfo }) {
+function SectionContactMe({ darkmode }) {
   let emptymensaje = {
     name: "",
     email: "",
@@ -16,6 +17,13 @@ function SectionContactMe({ contactInfo }) {
   const [copiedText, setCopiedText] = useState("");
   const [isValidEmailState, setIsValidEmailState] = useState(true);
   const [contacto, setContacto] = useState(emptymensaje);
+  const form = useRef();
+
+  const isValidEmail = (email) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    setIsValidEmailState(emailPattern.test(email));
+    return emailPattern.test(email);
+  };
 
   const onInputChange = (e, name) => {
     const val = (e.target && e.target.value) || "";
@@ -24,30 +32,46 @@ function SectionContactMe({ contactInfo }) {
     setContacto(_contact);
   };
 
-  const isValidEmail = (email) => {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    setIsValidEmailState(emailPattern.test(email));
-    return emailPattern.test(email);
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (isValidEmail(contacto.email)) {
-      await onSubmitGuardar(event, contacto);
+      await sendEmail();
     }
   };
 
-  const onSubmitGuardar = async (e, contactData) => {
-    e.preventDefault();
-    try {
-      const response = await registerContact(contactData);
-      console.log('Mensaje enviado', response);
-      setContacto(emptymensaje)
-    } catch (error) {
-      console.error('Error enviando el mensaje', error);
-      // Manejo del error, por ejemplo, mostrando un mensaje de error
-    }
+  const sendEmail = () => {
+    emailjs
+      .send("service_y1rln89", "template_2aet5qf", contacto, {
+        publicKey: "vVnc-MReIPLqbNFpz",
+      })
+      .then(
+        () => {
+          toast.success("¡Mensaje enviado con éxito!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: darkmode ? "dark" : "light",
+          });
+        },
+        (error) => {
+          toast.error(`Error al enviar el mensaje: ${error.text}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: darkmode ? "dark" : "light",
+          });
+        }
+      );
   };
+
   const copyToClipboard = (text) => {
     navigator.clipboard
       .writeText(text)
@@ -61,9 +85,9 @@ function SectionContactMe({ contactInfo }) {
       })
       .catch((err) => console.error("Error copying to clipboard: ", err));
   };
-  //console.log(contactInfo && contactInfo.email);
-  const email = contactInfo && contactInfo.email;
-  const numeros = contactInfo ? "+591 "+contactInfo.number : '';
+
+  const email = "aisakvelizdc@gmail.com";
+  const numeros = "+591 69625120";
   return (
     <div className="relative flex items-center h-auto md:h-screen">
       <div className="mt-[5rem] lg:mt-0 mx-auto max-w-7xl text-colorDarkPrimary dark:text-colorLigthPrimary">
@@ -83,6 +107,7 @@ function SectionContactMe({ contactInfo }) {
             <form
               className="backdrop-blur-sm overflow-hidden rounded-xl p-2"
               onSubmit={handleSubmit}
+              ref={form}
             >
               <Input
                 type="text"
@@ -101,7 +126,7 @@ function SectionContactMe({ contactInfo }) {
                   onChange={onInputChange}
                   text="Correo Electronico"
                   placeholder="example@gmail.com"
-                required={true}
+                  required={true}
                 />
                 {!isValidEmailState && (
                   <p className="text-sm text-red-600">
@@ -110,6 +135,7 @@ function SectionContactMe({ contactInfo }) {
                   </p>
                 )}
               </div>
+              <input type="email" name="email" />
               <Textarea
                 name="message"
                 rows={3}
@@ -119,7 +145,7 @@ function SectionContactMe({ contactInfo }) {
                 required={true}
               />
               <div className="py-4 flex justify-end">
-                <ButtonPrimary type="submit" title="Enviar"/>
+                <ButtonPrimary type="submit" title="Enviar" />
               </div>
             </form>
           </div>
@@ -129,7 +155,8 @@ function SectionContactMe({ contactInfo }) {
                 <motion.div
                   initial={{ opacity: 0, x: 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 1 }}>
+                  transition={{ duration: 1 }}
+                >
                   <h1 className="text-2xl font-bold">Correo Electrónico</h1>
                   <div className="mt-2 mb-6 flex items-center text-1xl gap-4 font-medium text-gray-800 dark:text-gray-500">
                     {email}
@@ -147,7 +174,8 @@ function SectionContactMe({ contactInfo }) {
                 <motion.div
                   initial={{ opacity: 0, x: -50 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 1 }}>
+                  transition={{ duration: 1 }}
+                >
                   <h1 className="text-2xl font-bold">Teléfono</h1>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-16 w-full max-w-[50rem]">
                     <div className="flex-col">
@@ -169,11 +197,12 @@ function SectionContactMe({ contactInfo }) {
                 <motion.div
                   initial={{ opacity: 0, x: 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 1 }}>
+                  transition={{ duration: 1 }}
+                >
                   <h1 className="text-2xl font-bold">Dirección</h1>
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 w-full max-w-[50rem]">
                     <div className="mt-2 mb-6text-1xl font-medium text-gray-800 dark:text-gray-500">
-                      { contactInfo&&contactInfo.address }, Potosí, Bolivia
+                      Potosí, Bolivia
                     </div>
                   </div>
                 </motion.div>
@@ -182,6 +211,7 @@ function SectionContactMe({ contactInfo }) {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }
