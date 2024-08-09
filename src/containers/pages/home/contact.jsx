@@ -39,7 +39,6 @@ function SectionContactMe({ darkmode }) {
     event.preventDefault();
     if (isValidEmail(contacto.email)) {
       await sendEmail();
-      console.log(templateKey);
     }
   };
 
